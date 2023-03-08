@@ -1,19 +1,17 @@
 export class Negociacao {
-    constructor(data, quantidade, valor) {
-        this._data = data;
-        this._valor = valor;
-        this._quantidade = quantidade;
+    constructor(_data, quantidade, valor) {
+        this._data = _data;
+        this.quantidade = quantidade;
+        this.valor = valor;
     }
     get data() {
-        return this._data;
-    }
-    get quantidade() {
-        return this._quantidade;
-    }
-    get valor() {
-        return this._valor;
+        // toda vez em que seja possivel modificar uma variavel,
+        // clone a variavel e retorne o clone, pq ao modificar,
+        // modificaria apenas o clone e não a data real.
+        const data = new Date(this._data.getTime());
+        return data;
     }
     get volume() {
-        return this._valor * this._quantidade;
+        return this.valor * this.quantidade;
     }
 }
